@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "tag": "c:gems/source"
+    }
+  ],
+  "result": {
+    "id": "ars_nouveau:magebloom_crop",
+    "count": 1
+  }
+}

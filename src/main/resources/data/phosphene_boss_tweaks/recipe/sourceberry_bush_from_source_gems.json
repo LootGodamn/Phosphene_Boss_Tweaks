@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "tag": "c:gems/source"
+    },
+    {
+      "tag": "c:gems/source"
+    }
+  ],
+  "result": {
+    "id": "ars_nouveau:sourceberry_bush",
+    "count": 4
+  }
+}

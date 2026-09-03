@@ -60,6 +60,15 @@ Caveats:
   dowsing rod, all rituals, glyph alts) -> swap archwood for `#minecraft:planks` / `#minecraft:logs` /
   `#minecraft:wooden_slabs`. Pure-decorative archwood-block recipes and the essence->sapling recipes are
   left alone; the Novice Spellbook was never archwood-gated.
+- **Magebloom seed bootstrap**: `ars_nouveau:magebloom_crop`'s only vanilla source is an Enchanting
+  Apparatus recipe, and the Apparatus is ItemObliterator-removed — so
+  `data/phosphene_boss_tweaks/recipe/magebloom_seed_from_source_gem.json` adds a shapeless bench recipe:
+  **1 source gem (`c:gems/source`), anywhere in the grid → 1 magebloom crop**. The rest of the chain
+  (grow → `magebloom` → `magebloom_fiber`) is already bench/loot-based and self-sustains.
+- **Sourceberry bush bootstrap**: `ars_nouveau:sourceberry_bush`'s only source was the `patch_berry`
+  worldgen feature (now no-op'd); the sack recipes are circular. So
+  `data/phosphene_boss_tweaks/recipe/sourceberry_bush_from_source_gems.json` adds a shapeless recipe:
+  **2 source gems → 4 sourceberry bushes**. Replanting + block loot then self-sustains it.
 
 ## 4. ItemObliterator (merged into `config/item_obliterator.json5`; backup `.phosphene-boss-bak`)
 
