@@ -85,7 +85,29 @@ returns null). Two tiny mixins fix that:
 Ars Nouveau absent the mod just logs "target not found" and loads normally. Ars Nouveau is a
 `compileOnly` dep (`libs/ars_nouveau-1.21.1-5.13.0.jar`) — not shipped in the jar.
 
-## 5. ItemObliterator (merged into `config/item_obliterator.json5`; backup `.phosphene-boss-bak`)
+## 5. Rituals gated behind the Ender Dragon (datapack advancements only)
+
+All 24 ritual tablets **and** the Ritual Brazier stay hidden from the recipe book until the player has
+killed the Ender Dragon.
+
+- 29 files under `data/ars_nouveau/advancement/recipes/misc/` (the 24 `ritual_*` recipes, the
+  `challenge_2` / `moonfall_2` / `sunrise_2` / `wilden_summon_alt` variants, and `ritual_brazier`)
+  **override** Ars Nouveau's own recipe-unlock advancements. Ars's version unlocks the recipe as soon as
+  you hold the Worn Notebook; the override drops that and uses the vanilla `end/kill_dragon` criterion
+  (`minecraft:player_killed_entity` on `minecraft:ender_dragon`), with `rewards.recipes` still pointing at
+  the recipe.
+- The recipes themselves are shipped plain (archwood swapped to `#minecraft:logs` like the other Ars
+  recipes) — no custom recipe type, no Java.
+
+**Scope / limits:**
+- Advancements gate the **recipe book**, not the crafting grid. A player who already knows the pattern
+  can still place the items and craft it manually (which then unlocks it for real). This is soft-gating.
+- Advancements are **per player** — the player who lands the killing blow on the dragon unlocks the
+  rituals for themselves. Other players on a server unlock when they get their own dragon kill credit.
+- **JEI / EMI ignore recipe unlocks** and will list the ritual recipes regardless. Only the vanilla
+  recipe book respects this gate.
+
+## 6. ItemObliterator (merged into `config/item_obliterator.json5`; backup `.phosphene-boss-bak`)
 
 Regex entries that cut Waystones down to the 8 boss variants and remove every vanilla summon route:
 all `*_spawn_egg`s of the four boss mods, cataclysm re-summon items, LM eyes/summoners/tesseract/warpers,
@@ -103,3 +125,5 @@ BFB arena keys, the Monarch Idol, and `pale_monarch:pale_axe`. **Keep `use_hashm
 7. Ars ritual that "requires source" (e.g. Harvest, Restoration, Sanctuary) runs at a brazier with no
    Source Jar anywhere. Boot log shows the two mixins applying to `AbstractRitual` / `RitualBrazierTile`
    (no "target not found" warning, since Ars Nouveau is present in the pack).
+8. Before the Ender Dragon is dead: ritual tablet + Ritual Brazier recipes are absent from the recipe
+   book. After killing it: they appear (a batch of recipe-unlock toasts fires).
