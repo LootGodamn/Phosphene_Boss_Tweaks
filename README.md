@@ -70,7 +70,22 @@ Caveats:
   `data/phosphene_boss_tweaks/recipe/sourceberry_bush_from_source_gems.json` adds a shapeless recipe:
   **2 source gems → 4 sourceberry bushes**. Replanting + block loot then self-sustains it.
 
-## 4. ItemObliterator (merged into `config/item_obliterator.json5`; backup `.phosphene-boss-bak`)
+## 4. Ritual source bypass (Java — `net.loot.bosstweaks.mixin`, non-required mixin)
+
+Removing every Source Jar / Sourcelink via ItemObliterator would permanently stall the Ars Nouveau
+rituals that pay Source at the brazier (`RitualBrazierTile#tick` bails when `SourceUtil.takeSource…`
+returns null). Two tiny mixins fix that:
+
+- `ArsRitualNoSourceMixin` → `AbstractRitual#consumesSource` returns `false`, so the brazier skips the
+  pay-or-stall block and every ritual runs on its normal timer with no Source.
+- `ArsRitualBrazierTakeSourceMixin` → `RitualBrazierTile#takeSource` returns `true`, covering rituals
+  (e.g. `DenySpawnRitual`) that ask for Source themselves.
+
+`phosphene_boss_tweaks.mixins.json` is `"required": false` and the injectors are `require: 0`, so with
+Ars Nouveau absent the mod just logs "target not found" and loads normally. Ars Nouveau is a
+`compileOnly` dep (`libs/ars_nouveau-1.21.1-5.13.0.jar`) — not shipped in the jar.
+
+## 5. ItemObliterator (merged into `config/item_obliterator.json5`; backup `.phosphene-boss-bak`)
 
 Regex entries that cut Waystones down to the 8 boss variants and remove every vanilla summon route:
 all `*_spawn_egg`s of the four boss mods, cataclysm re-summon items, LM eyes/summoners/tesseract/warpers,
@@ -85,3 +100,6 @@ BFB arena keys, the Monarch Idol, and `pale_monarch:pale_axe`. **Keep `use_hashm
 4. Ender Dragon -> purpur waystone + dragon head + 3 skill orbs (at its death position).
 5. JEI: waystones un-craftable; archwood-gated ars items now accept any planks.
 6. No boss spawn egg / summon item is obtainable (creative search / JEI).
+7. Ars ritual that "requires source" (e.g. Harvest, Restoration, Sanctuary) runs at a brazier with no
+   Source Jar anywhere. Boot log shows the two mixins applying to `AbstractRitual` / `RitualBrazierTile`
+   (no "target not found" warning, since Ars Nouveau is present in the pack).

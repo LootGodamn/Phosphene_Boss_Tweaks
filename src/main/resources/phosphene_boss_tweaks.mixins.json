@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8.5",
+  "package": "net.loot.bosstweaks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ArsRitualNoSourceMixin",
+    "ArsRitualBrazierTakeSourceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

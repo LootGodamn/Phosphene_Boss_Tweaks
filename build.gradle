@@ -116,6 +116,12 @@ configurations {
 }
 
 dependencies {
+    // Ars Nouveau, compile-only: needed to target its ritual classes from the
+    // ritual-source mixin (src/main/resources/phosphene_boss_tweaks.mixins.json).
+    // Optional at runtime - the mixin config is non-required, so it simply no-ops
+    // when Ars Nouveau is absent.
+    compileOnly files("libs/ars_nouveau-1.21.1-5.13.0.jar")
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
