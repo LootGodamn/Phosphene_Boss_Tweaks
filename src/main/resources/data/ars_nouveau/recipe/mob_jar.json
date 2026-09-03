@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": {
+      "tag": "c:glass_blocks"
+    },
+    "y": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "pattern": [
+    "yyy",
+    "x x",
+    "xxx"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ars_nouveau:mob_jar"
+  }
+}

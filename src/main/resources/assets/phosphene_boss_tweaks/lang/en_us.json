@@ -1,0 +1,6 @@
+{
+  "block.phosphene_boss_tweaks.boss_altar": "Boss Altar",
+  "itemGroup.phosphene_boss_tweaks.bosses": "Phosphene Bosses",
+  "message.phosphene_boss_tweaks.altar.unset": "This altar has no boss set (NBT: Boss).",
+  "message.phosphene_boss_tweaks.altar.unknown": "Unknown entity id: %s"
+}

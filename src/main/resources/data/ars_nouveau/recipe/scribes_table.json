@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "y": {
+      "tag": "c:nuggets/gold"
+    },
+    "z": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "y y",
+    "z z"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ars_nouveau:scribes_table"
+  }
+}
